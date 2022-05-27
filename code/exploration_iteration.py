@@ -9,10 +9,6 @@ Original file is located at
 #Prepare data
 """
 
-!git config --global user.Username "nicolas.mueller@students.ffhs.ch"
-!git config --global user.password "Thunersee1*"
-!git clone https://git.ffhs.ch/nicolas.mueller/terrain-gan.git
-
 # Commented out IPython magic to ensure Python compatibility.
 # %matplotlib inline
 
