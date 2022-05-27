@@ -5,7 +5,7 @@ GAN = GAN(reporter, 'GAN', data)
 DCGAN = DCGAN(reporter, 'DCGAN', data)
 FCCGAN = FCCGAN(reporter, 'FCCGAN', data)
 LSGAN = LSGAN(reporter, 'LSGAN', data)
-StyleGAN = StyleGAN(reporter, 'StyleGAN', data)
+StyleGAN = StyleGAN(reporter, 'StyleGAN', data) #https://keras.io/examples/generative/stylegan/
 
 GAN.train()
 DCGAN.train()
