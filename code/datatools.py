@@ -38,7 +38,3 @@ def isEnoughHilly(heightmodel, minDifference = 0, midHeight = 0):
 def filterByResolution(heightmodels, resolution):
     filtered = filter(lambda x: len(x) == (resolution * resolution), heightmodels)
     return filtered
-
-windows = []
-for heightmodel in data:
-  windows.extend(createWindows(heightmodel, 128, 2))
