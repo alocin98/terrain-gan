@@ -8,7 +8,7 @@ class DCGAN(keras.Model):
         self.generator = self.createGenerator()
         self.discriminator = self.createDiscriminator()
     
-    def createGenerator():
+    def createGenerator(self):
         keras.Sequential(
         [
             keras.Input(shape=(128, 128,1)),
@@ -25,7 +25,7 @@ class DCGAN(keras.Model):
         name="discriminator",
         )
 
-    def createDiscriminator():
+    def createDiscriminator(self):
         keras.Sequential(
         [
             keras.Input(shape=(latent_dim,)),
