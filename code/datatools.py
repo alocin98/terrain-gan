@@ -1,5 +1,5 @@
 import numpy as np
-import os
+from os import listdir, path
 
 def getData(path='../data/alps_hgt', resolution=128, scale=1, step=0.1, heightDif=1000, midHeight=500):
     data = getHeightModelsFromDirectory(path)
