@@ -6,9 +6,9 @@ class DCGAN(keras.Model):
         super(DCGAN, self).__init__()
         self.reporter = reporter
         self.title = title
+        self.latent_dim = latent_dim
         self.generator = self.createGenerator()
         self.discriminator = self.createDiscriminator()
-        self.latent_dim = latent_dim
     
     def createGenerator(self):
         keras.Sequential(
