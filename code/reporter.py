@@ -11,10 +11,11 @@ class TensorBoardReporter(keras.callbacks.Callback):
         self.d_loss = []
         self.g_loss = []
         self.x_axis = []
+        self.logdir = 'logs/tensorboard/'
 
     def setLogName(self, name):
         self.logname = name
-        self.logdir = "logs/train_data/" + name
+        self.logdir = "logs/tensorboard/" + name
         self.file_writer = tf.summary.create_file_writer(logdir)
 
     def on_epoch_end(self, epoch, logs=None):
