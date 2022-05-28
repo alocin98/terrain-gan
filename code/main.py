@@ -1,4 +1,6 @@
-data = getData(path='../data/alps_hgt', resolution=128, scale=1)
+import datatools
+
+data = datatools.getData(path='../data/alps_hgt', resolution=128, scale=1)
 reporter = TensorboardReporter()
 
 GAN = GAN(reporter, 'GAN', data)

@@ -1,7 +1,7 @@
 import numpy as np
+import os
 
 def getData(path='../data/alps_hgt', resolution=128, scale=1, step=0.1, heightDif=1000, midHeight=500):
-    import os
     data = getHeightModelsFromDirectory(path)
     windows = []
     for heightmodel in data:
