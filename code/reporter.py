@@ -16,7 +16,7 @@ class TensorBoardReporter(keras.callbacks.Callback):
     def setLogName(self, name):
         self.logname = name
         self.logdir = "logs/tensorboard/" + name
-        self.file_writer = tf.summary.create_file_writer(logdir)
+        self.file_writer = tf.summary.create_file_writer(self.logdir)
 
     def on_epoch_end(self, epoch, logs=None):
       random_latent_vectors = tf.random.normal(shape=(self.num_img, self.latent_dim))
