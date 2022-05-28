@@ -4,7 +4,7 @@ import reporter
 data = datatools.getData(path='../data/alps_hgt/', resolution=128, scale=1)
 reporter = TensorboardReporter()
 
-DCGAN = DCGAN(reporter, 'DCGAN', data)
+DCGAN = DCGAN(reporter, 'DCGAN', data, 128)
 #GAN = GAN(reporter, 'GAN', data)
 #FCCGAN = FCCGAN(reporter, 'FCCGAN', data)
 #LSGAN = LSGAN(reporter, 'LSGAN', data)

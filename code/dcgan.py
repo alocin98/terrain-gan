@@ -2,12 +2,13 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 class DCGAN(keras.Model):
-    def __init__(self, reporter, title):
+    def __init__(self, reporter, title, latent_dim):
         super(DCGAN, self).__init__()
         self.reporter = reporter
         self.title = title
         self.generator = self.createGenerator()
         self.discriminator = self.createDiscriminator()
+        self.latent_dim = latent_dim
     
     def createGenerator(self):
         keras.Sequential(
@@ -29,7 +30,7 @@ class DCGAN(keras.Model):
     def createDiscriminator(self):
         keras.Sequential(
         [
-            keras.Input(shape=(latent_dim,)),
+            keras.Input(shape=(self.latent_dim,)),
             layers.Dense(8 * 8 * 128),
             layers.Reshape((8, 8, 128)),
             layers.Conv2DTranspose(128, kernel_size=4, strides=2, padding="same"),
