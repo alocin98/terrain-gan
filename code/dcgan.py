@@ -110,8 +110,8 @@ class DCGAN(keras.Model):
             loss_fn=loss_fn
         )
 
-    gan.fit(
-        data, epochs=epochs, callbacks=[GANMonitor(logname=name, num_img=10, latent_dim=latent_dim)]
-    )
+        self.fit(
+            data, epochs=epochs, callbacks=[GANMonitor(logname=name, num_img=10, latent_dim=latent_dim)]
+        )
 
 
