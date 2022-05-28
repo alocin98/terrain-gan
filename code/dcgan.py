@@ -30,7 +30,7 @@ class DCGAN(keras.Model):
     def createDiscriminator(self):
         keras.Sequential(
         [
-            keras.Input(shape=(self.latent_dim,)),
+            keras.Input(shape=(self.latent_dim)),
             layers.Dense(8 * 8 * 128),
             layers.Reshape((8, 8, 128)),
             layers.Conv2DTranspose(128, kernel_size=4, strides=2, padding="same"),
