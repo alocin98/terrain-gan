@@ -31,7 +31,7 @@ class DCGAN(keras.Model):
         )
 
     def createDiscriminator(self):
-        return discriminator = keras.Sequential(
+        return keras.Sequential(
         [
             keras.Input(shape=(128, 128,1)),
             layers.Conv2D(64, kernel_size=4, strides=2, padding="same"),
