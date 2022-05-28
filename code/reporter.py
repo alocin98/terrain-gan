@@ -27,7 +27,6 @@ class TensorBoardReporter(keras.callbacks.Callback):
       generated_images = numpy.expand_dims(generated_images, axis=3)
       images = numpy.reshape(generated_images, (-1, 128, 128, 1))
       self.generated.append(images)
-      temp_generated.append(images)
 
       # Save the losses
       self.d_loss.append(logs["d_loss"])
