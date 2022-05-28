@@ -3,10 +3,11 @@ from tensorflow import keras
 from tensorflow.keras import layers
 import matplotlib.pyplot as plt
 import numpy
+import math
 
 
 class TensorBoardReporter(keras.callbacks.Callback):
-    def __init__(self, logname='', num_img=3, latent_dim=128):
+    def __init__(self, logname='', num_img=3, latent_dim=128, print_images=9):
         self.num_img = num_img
         self.latent_dim = latent_dim
         self.logname = logname
@@ -40,13 +41,16 @@ class TensorBoardReporter(keras.callbacks.Callback):
         tf.summary.scalar('d_loss', logs["d_loss"], step=epoch)
       #tf.summary.scalar('loss', log, step=epoch)
     def on_train_end(self, logs=None):
+
+      rt = int(math.sqrt(self.print_images))
+
       plot = plt.figure()
-      f, axarr = plt.subplots(3,3, figsize=(16,16))
+      f, axarr = plt.subplots(rt,rt, figsize=(16,16))
       f.suptitle(self.logname + '-OVERVIEW', fontsize=20, fontweight='bold')
       f.tight_layout(rect=[0, 0.05, 1, 0.95])
       i = 0
-      for x in range(3):
-        for y in range(3):
+      for x in range(rt):
+        for y in range(rt):
           axarr[x][y].imshow(numpy.squeeze(self.generated[i][0], axis=(2)))
           axarr[x][y].set_title('Epoch: ' + str(i))
           i = i + 1
