@@ -10,8 +10,6 @@ class DCGAN(keras.Model):
         self.generator = self.createGenerator()
         self.discriminator = self.createDiscriminator()
         self.reporter = reporter
-        self.generator.summary()
-        self.discriminator.summary()
     
     def createGenerator(self):
         return keras.Sequential(
@@ -33,7 +31,7 @@ class DCGAN(keras.Model):
         )
 
     def createDiscriminator(self):
-        discriminator = keras.Sequential(
+        return discriminator = keras.Sequential(
         [
             keras.Input(shape=(128, 128,1)),
             layers.Conv2D(64, kernel_size=4, strides=2, padding="same"),
