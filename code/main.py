@@ -12,10 +12,9 @@ DCGAN = DCGAN(reporter, 'DCGAN', data, 128)
 
 optimizers = [keras.optimizers.Adam(learning_rate=0.0001)]             # Keras optimizers
 batch_size = 4
-activation_functions = []   
 loss_functions = [keras.losses.BinaryCrossentropy()]
 
-DCGAN.train(data, optimizer[0], batch_size, activation_function, loss_function[0], 'DCGAN')
+DCGAN.train(data, optimizer[0], batch_size, loss_function[0], 'DCGAN')
 #DCGAN.train()
 #FCCGAN.train()
 #LSGAN.train()
