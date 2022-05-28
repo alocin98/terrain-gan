@@ -4,6 +4,7 @@ from tensorflow.keras import layers
 import matplotlib.pyplot as plt
 import numpy
 import math
+import io
 
 
 class TensorBoardReporter(keras.callbacks.Callback):
