@@ -45,7 +45,7 @@ class DCGAN(keras.Model):
             layers.Dense(1, activation="sigmoid"),
         ],
         name="discriminator",
-    )
+        )
         
     def compile(self, d_optimizer, g_optimizer, loss_fn):
         super(DCGAN, self).compile()
