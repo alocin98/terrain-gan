@@ -14,23 +14,6 @@ class DCGAN(keras.Model):
     def createGenerator(self):
         return keras.Sequential(
         [
-            keras.Input(shape=(128, 128,1)),
-            layers.Conv2D(64, kernel_size=4, strides=2, padding="same"),
-            layers.LeakyReLU(alpha=0.2),
-            layers.Conv2D(128, kernel_size=4, strides=2, padding="same"),
-            layers.LeakyReLU(alpha=0.2),
-            layers.Conv2D(128, kernel_size=4, strides=2, padding="same"),
-            layers.LeakyReLU(alpha=0.2),
-            layers.Flatten(),
-            layers.Dropout(0.2),
-            layers.Dense(1, activation="sigmoid"),
-        ],
-        name="discriminator",
-        )
-
-    def createDiscriminator(self):
-        return keras.Sequential(
-        [
             keras.Input(shape=(self.latent_dim,)),
             layers.Dense(8 * 8 * 128),
             layers.Reshape((8, 8, 128)),
@@ -46,6 +29,24 @@ class DCGAN(keras.Model):
         ],
         name="generator",
         )
+
+    def createDiscriminator(self):
+        discriminator = keras.Sequential(
+        [
+            keras.Input(shape=(128, 128,1)),
+            layers.Conv2D(64, kernel_size=4, strides=2, padding="same"),
+            layers.LeakyReLU(alpha=0.2),
+            layers.Conv2D(128, kernel_size=4, strides=2, padding="same"),
+            layers.LeakyReLU(alpha=0.2),
+            layers.Conv2D(128, kernel_size=4, strides=2, padding="same"),
+            layers.LeakyReLU(alpha=0.2),
+            layers.Flatten(),
+            layers.Dropout(0.2),
+            layers.Dense(1, activation="sigmoid"),
+        ],
+        name="discriminator",
+)
+        
     def compile(self, d_optimizer, g_optimizer, loss_fn):
         super(DCGAN, self).compile()
         self.d_optimizer = d_optimizer
