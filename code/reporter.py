@@ -1,6 +1,8 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
+import numpy
+
 
 class TensorBoardReporter(keras.callbacks.Callback):
     def __init__(self, logname='', num_img=3, latent_dim=128):
@@ -23,7 +25,7 @@ class TensorBoardReporter(keras.callbacks.Callback):
       generated_images = self.model.generator(random_latent_vectors)
       generated_images.numpy()
       generated_images = numpy.expand_dims(generated_images, axis=3)
-      images = np.reshape(generated_images, (-1, 128, 128, 1))
+      images = numpy.reshape(generated_images, (-1, 128, 128, 1))
       self.generated.append(images)
       temp_generated.append(images)
 
