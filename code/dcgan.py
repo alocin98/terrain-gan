@@ -10,6 +10,8 @@ class DCGAN(keras.Model):
         self.generator = self.createGenerator()
         self.discriminator = self.createDiscriminator()
         self.reporter = reporter
+        self.generator.summary()
+        self.discriminator.summary()
     
     def createGenerator(self):
         return keras.Sequential(
@@ -45,7 +47,7 @@ class DCGAN(keras.Model):
             layers.Dense(1, activation="sigmoid"),
         ],
         name="discriminator",
-)
+    )
         
     def compile(self, d_optimizer, g_optimizer, loss_fn):
         super(DCGAN, self).compile()
