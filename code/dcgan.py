@@ -4,7 +4,7 @@ class DCGAN(keras.Model):
     def __init__(self, reporter, name):
         super(DCGAN, self).__init__()
         self.reporter = reporter
-        self.name = name
+        print(self.name)
         self.generator = createGenerator()
         self.discriminator = createDiscriminator()
     
