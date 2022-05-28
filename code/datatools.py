@@ -10,8 +10,8 @@ def getData(path='../data/alps_hgt', resolution=128, scale=1, step=0.1, heightDi
     filtered = numpy.expand_dims(filtered, axis=3)
     return filtered
 
-def getHeightModelsFromDirectory(path=DATA_PATH):
-  filenames = [DATA_PATH + file for file in os.listdir(DATA_PATH)]
+def getHeightModelsFromDirectory(path):
+  filenames = [path + file for file in os.listdir(path)]
   data = []
   for file in filenames:
     siz = os.path.getsize(file)
