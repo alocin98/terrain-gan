@@ -12,7 +12,7 @@ class TensorBoardReporter(keras.callbacks.Callback):
         self.g_loss = []
         self.x_axis = []
 
-    def setName(self, name):
+    def setLogName(self, name):
         self.logname = name
         self.logdir = "logs/train_data/" + name
         self.file_writer = tf.summary.create_file_writer(logdir)
