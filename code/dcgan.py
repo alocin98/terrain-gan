@@ -1,5 +1,6 @@
 from tensorflow import keras
 from tensorflow.keras import layers
+import tensorflow as tf
 
 class DCGAN(keras.Model):
     def __init__(self, reporter, title, latent_dim):
