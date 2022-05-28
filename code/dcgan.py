@@ -104,7 +104,7 @@ class DCGAN(keras.Model):
             "d_loss": self.d_loss_metric.result(),
             "g_loss": self.g_loss_metric.result(),
         }
-    def train(data, optimizer, batch_size, epochs, loss_fn, logname):
+    def train(self, data, optimizer, batch_size, epochs, loss_fn, logname):
         self.reporter.setName(logname)
         gan.compile(
             d_optimizer=optimizer,
