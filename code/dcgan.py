@@ -113,7 +113,7 @@ class DCGAN(keras.Model):
         )
 
         self.fit(
-            data, epochs=epochs, callbacks=[GANMonitor(logname=name, num_img=10, latent_dim=latent_dim)]
+            data, epochs=epochs, callbacks=[self.reporter(logname=name, num_img=10, latent_dim=self.latent_dim)]
         )
 
 
