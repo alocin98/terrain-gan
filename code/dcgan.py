@@ -5,11 +5,11 @@ import tensorflow as tf
 class DCGAN(keras.Model):
     def __init__(self, reporter, title, latent_dim):
         super(DCGAN, self).__init__()
-        self.reporter = reporter
         self.title = title
         self.latent_dim = latent_dim
         self.generator = self.createGenerator()
         self.discriminator = self.createDiscriminator()
+        self.reporter = reporter
     
     def createGenerator(self):
         return keras.Sequential(
