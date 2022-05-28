@@ -1,5 +1,5 @@
 import numpy as np
-from os import listdir, path
+import os
 
 def getData(path='../data/alps_hgt', resolution=128, scale=1, step=0.1, heightDif=1000, midHeight=500):
     data = getHeightModelsFromDirectory(path)
@@ -12,6 +12,7 @@ def getData(path='../data/alps_hgt', resolution=128, scale=1, step=0.1, heightDi
     return filtered
 
 def getHeightModelsFromDirectory(path):
+  np.array([])
   filenames = [path + file for file in os.listdir(path)]
   data = []
   for file in filenames:
