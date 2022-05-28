@@ -1,3 +1,5 @@
+from tensorflow import keras
+
 class DCGAN(keras.Model):
     def __init__(self, reporter, name):
         super(DCGAN, self).__init__()
