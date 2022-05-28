@@ -106,7 +106,7 @@ class DCGAN(keras.Model):
         }
     def train(self, data, optimizer, batch_size, epochs, loss_fn, logname):
         self.reporter.setLogName(logname)
-        gan.compile(
+        self.compile(
             d_optimizer=optimizer,
             g_optimizer=optimizer,
             loss_fn=loss_fn
