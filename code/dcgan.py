@@ -1,12 +1,12 @@
 from tensorflow import keras
 
 class DCGAN(keras.Model):
-    def __init__(self, reporter, name):
+    def __init__(self, reporter, title):
         super(DCGAN, self).__init__()
         self.reporter = reporter
-        print(self.name)
-        self.generator = createGenerator()
-        self.discriminator = createDiscriminator()
+        self.title = title
+        self.generator = self.createGenerator()
+        self.discriminator = self.createDiscriminator()
     
     def createGenerator():
         keras.Sequential(
