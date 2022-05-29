@@ -1,7 +1,7 @@
 from tensorflow import keras
 from tensorflow.keras import layers
 import tensorflow as tf
-import gan
+from gan import GAN
 
 class DCGAN(GAN):
     def __init__(self, reporter, title, latent_dim):
