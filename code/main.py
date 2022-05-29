@@ -15,7 +15,7 @@ batch_size = 4
 loss_functions = [keras.losses.BinaryCrossentropy()]
 
 DCGAN.train(data, optimizer[0], batch_size, loss_function[0], 'DCGAN')
-#DCGAN.train()
+GAN.train()
 #FCCGAN.train()
 #LSGAN.train()
 #StyleGAN.train()
