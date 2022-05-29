@@ -2,6 +2,8 @@ from tensorflow import keras
 from tensorflow.keras import layers
 import tensorflow as tf
 
+
+
 class GAN(keras.Model):
     def __init__(self, reporter, title, latent_dim):
         super(GAN, self).__init__()
@@ -11,7 +13,10 @@ class GAN(keras.Model):
         self.discriminator = self.createDiscriminator()
         self.reporter = reporter
     
-
+    def setGenerator(self, generator):
+        self.generator = generator
+    def setDiscriminator(self, discriminator):
+        self.discriminator = discriminator
     
     def createGenerator(self):
         return keras.Sequential(

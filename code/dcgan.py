@@ -3,19 +3,9 @@ from tensorflow.keras import layers
 import tensorflow as tf
 from gan import GAN
 
-class DCGAN(GAN):
-    def __init__(self, reporter, title, latent_dim):
-        super(GAN, self).__init__(reporter, title, latent_dim)
-        self.title = title
-        self.latent_dim = latent_dim
-        self.generator = self.createGenerator()
-        self.discriminator = self.createDiscriminator()
-        self.reporter = reporter
-    
-
-    # Override
-    def createGenerator(self):
-        return keras.Sequential(
+def dcgan(reporter, title, latent_dim):
+    gan = GAN(reporter, title, latent_dim)
+    generator = keras.Sequential(
         [
             keras.Input(shape=(self.latent_dim,)),
             layers.Dense(8 * 8 * 128),
@@ -32,10 +22,7 @@ class DCGAN(GAN):
         ],
         name="generator",
         )
-
-    # Override
-    def createDiscriminator(self):
-        return keras.Sequential(
+    discriminator =  return keras.Sequential(
         [
             keras.Input(shape=(128, 128,1)),
             layers.Conv2D(64, kernel_size=4, strides=2, padding="same"),
@@ -50,3 +37,6 @@ class DCGAN(GAN):
         ],
         name="discriminator",
         )
+    gan.setGenerator(generator)
+    gan.setDiscriminator(discriminator)
+    return gan
