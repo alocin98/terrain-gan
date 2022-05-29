@@ -37,6 +37,6 @@ def DCGAN(reporter, title, latent_dim):
         ],
         name="discriminator",
         )
-    gan.setGenerator(generator)
-    gan.setDiscriminator(discriminator)
+    gan.generator = generator
+    gan.discriminator = discriminator
     return gan
