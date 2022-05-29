@@ -50,7 +50,7 @@ class GAN(keras.Model):
         )
         
     def compile(self, d_optimizer, g_optimizer, loss_fn):
-        super(DCGAN, self).compile()
+        super(GAN, self).compile()
         self.d_optimizer = d_optimizer
         self.g_optimizer = g_optimizer
         self.loss_fn = loss_fn
