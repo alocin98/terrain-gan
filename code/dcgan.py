@@ -3,7 +3,7 @@ from tensorflow.keras import layers
 import tensorflow as tf
 from gan import GAN
 
-def DCGAN(reporter, title, latent_dim):
+def buildDCGAN(reporter, title, latent_dim):
     gan = GAN(reporter, title, latent_dim)
     generator = keras.Sequential(
         [
