@@ -7,7 +7,7 @@ def DCGAN(reporter, title, latent_dim):
     gan = GAN(reporter, title, latent_dim)
     generator = keras.Sequential(
         [
-            keras.Input(shape=(self.latent_dim,)),
+            keras.Input(shape=(latent_dim,)),
             layers.Dense(8 * 8 * 128),
             layers.Reshape((8, 8, 128)),
             layers.Conv2DTranspose(128, kernel_size=4, strides=2, padding="same"),
