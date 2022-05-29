@@ -3,7 +3,7 @@ from tensorflow.keras import layers
 import tensorflow as tf
 from gan import GAN
 
-def dcgan(reporter, title, latent_dim):
+def DCGAN(reporter, title, latent_dim):
     gan = GAN(reporter, title, latent_dim)
     generator = keras.Sequential(
         [
@@ -22,7 +22,7 @@ def dcgan(reporter, title, latent_dim):
         ],
         name="generator",
         )
-    discriminator =  return keras.Sequential(
+    discriminator = keras.Sequential(
         [
             keras.Input(shape=(128, 128,1)),
             layers.Conv2D(64, kernel_size=4, strides=2, padding="same"),
