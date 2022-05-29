@@ -16,7 +16,7 @@ class TensorBoardReporter(keras.callbacks.Callback):
         self.d_loss = []
         self.g_loss = []
         self.x_axis = []
-        self.logdir = 'logs/tensorboard/'
+        self.logdir = 'logs/tensorboard/' + logname
         self.print_images = print_images
 
     def setLogName(self, name):
