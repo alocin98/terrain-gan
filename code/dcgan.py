@@ -5,7 +5,7 @@ from gan import GAN
 
 class DCGAN(GAN):
     def __init__(self, reporter, title, latent_dim):
-        super(DCGAN, self).__init__()
+        super(DCGAN, self).__init__(reporter, title, latent_dim)
         self.title = title
         self.latent_dim = latent_dim
         self.generator = self.createGenerator()
@@ -32,7 +32,7 @@ class DCGAN(GAN):
         ],
         name="generator",
         )
-        
+
     # Override
     def createDiscriminator(self):
         return keras.Sequential(
