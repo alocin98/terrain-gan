@@ -13,7 +13,7 @@ class DCGAN(GAN):
         self.reporter = reporter
     
 
-    @Override
+    # Override
     def createGenerator(self):
         return keras.Sequential(
         [
@@ -33,7 +33,7 @@ class DCGAN(GAN):
         name="generator",
         )
         
-    @Override
+    # Override
     def createDiscriminator(self):
         return keras.Sequential(
         [
