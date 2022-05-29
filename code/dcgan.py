@@ -5,7 +5,7 @@ import gan
 
 class DCGAN(GAN):
     def __init__(self, reporter, title, latent_dim):
-        super(GAN, self).__init__()
+        super(DCGAN, self).__init__()
         self.title = title
         self.latent_dim = latent_dim
         self.generator = self.createGenerator()
