@@ -58,11 +58,13 @@ class TensorBoardReporter(keras.callbacks.Callback):
           i = i + 1
       with self.file_writer.as_default():
         tf.summary.image("OVERVIEW", self.plot_to_image(plot), step=0)
+      plt.clf()
       losses = plt.figure()
       plt.plot(self.x_axis, self.d_loss)
       plt.plot(self.x_axis, self.g_loss)
       with self.file_writer.as_default():
         tf.summary.image("LOSSES", self.plot_to_image(losses), step=0)
+      losses.clf()
       
     def plot_to_image(self, figure):    
       buf = io.BytesIO()
