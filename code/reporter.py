@@ -8,7 +8,7 @@ import io
 
 
 class TensorBoardReporter(keras.callbacks.Callback):
-    def __init__(self, logname='', num_img=3, latent_dim=128, print_images=9):
+    def __init__(self, logdir='logs/tensorboard/', logname='', num_img=3, latent_dim=128, print_images=9):
         self.num_img = num_img
         self.latent_dim = latent_dim
         self.logname = logname
@@ -16,12 +16,13 @@ class TensorBoardReporter(keras.callbacks.Callback):
         self.d_loss = []
         self.g_loss = []
         self.x_axis = []
-        self.logdir = 'logs/tensorboard/' + logname
+        self.logdir_root = logdir
+        self.logdir = logdir + logname
         self.print_images = print_images
 
     def setLogName(self, name):
         self.logname = name
-        self.logdir = "logs/tensorboard/" + name
+        self.logdir = self.logdir_root + name
         self.file_writer = tf.summary.create_file_writer(self.logdir)
 
     def on_epoch_end(self, epoch, logs=None):
