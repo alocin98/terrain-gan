@@ -119,7 +119,7 @@ class GAN(keras.Model):
         self.compile(
             d_optimizer=optimizer,
             g_optimizer=optimizer,
-            g_loss_fn=g_loss_fn
+            g_loss_fn=g_loss_fn,
             d_loss_fn=d_loss_fn
         )
 
