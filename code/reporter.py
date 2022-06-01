@@ -66,6 +66,9 @@ class TensorBoardReporter(keras.callbacks.Callback):
       losses.clf()
       plt.clf()
       plot.clf()
+      del plot
+      del f
+      del axarr
       self.d_loss = []
       self.g_loss = []
       self.x_axis = []
