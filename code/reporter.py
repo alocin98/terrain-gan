@@ -30,7 +30,7 @@ class TensorBoardReporter(keras.callbacks.Callback):
       generated_images = self.model.generator(random_latent_vectors)
       generated_images.numpy()
       generated_images = numpy.expand_dims(generated_images, axis=3)
-      images = numpy.reshape(generated_images, (-1, 128, 128, 1))
+      images = numpy.reshape(generated_images, (-1, self.latent_dim, self.latent_dim, 1))
       self.generated.append(images)
 
       # Save the losses
