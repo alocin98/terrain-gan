@@ -5,13 +5,14 @@ import tensorflow as tf
 
 
 class GAN(keras.Model):
-    def __init__(self, reporter, title, latent_dim):
+    def __init__(self, reporter, title, latent_dim, disc_train_ratio=1):
         super(GAN, self).__init__()
         self.title = title
         self.latent_dim = latent_dim
         self.generator = self.createGenerator()
         self.discriminator = self.createDiscriminator()
         self.reporter = reporter
+        self.disc_train_ratio = disc_train_ratio
     
     def setGenerator(self, generator):
         self.generator = generator
@@ -85,13 +86,14 @@ class GAN(keras.Model):
         labels += 0.05 * tf.random.uniform(tf.shape(labels))
 
         # Train the discriminator
-        with tf.GradientTape() as tape:
-            predictions = self.discriminator(combined_images)
-            d_loss = self.d_loss_fn(labels, predictions)
-        grads = tape.gradient(d_loss, self.discriminator.trainable_weights)
-        self.d_optimizer.apply_gradients(
-            zip(grads, self.discriminator.trainable_weights)
-        )
+        for i in range(0, self.disc_train_ratio):
+            with tf.GradientTape() as tape:
+                predictions = self.discriminator(combined_images)
+                d_loss = self.d_loss_fn(labels, predictions)
+            grads = tape.gradient(d_loss, self.discriminator.trainable_weights)
+            self.d_optimizer.apply_gradients(
+                zip(grads, self.discriminator.trainable_weights)
+            )
 
         # Sample random points in the latent space
         random_latent_vectors = tf.random.normal(shape=(batch_size, self.latent_dim))
