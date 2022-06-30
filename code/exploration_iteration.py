@@ -210,6 +210,7 @@ class DCGAN(keras.Model):
     def train_step(self, real_images):
         # Sample random points in the latent space
         batch_size = tf.shape(real_images)[0]
+        print(batch_size)
         random_latent_vectors = tf.random.normal(shape=(batch_size, self.latent_dim))
 
         # Decode them to fake images
