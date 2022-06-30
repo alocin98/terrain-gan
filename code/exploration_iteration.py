@@ -208,9 +208,9 @@ class DCGAN(keras.Model):
         return [self.d_loss_metric, self.g_loss_metric]
 
     def train_step(self, real_images):
+        print(real_images
         # Sample random points in the latent space
         batch_size = tf.shape(real_images)[0]
-        print(batch_size)
         random_latent_vectors = tf.random.normal(shape=(batch_size, self.latent_dim))
 
         # Decode them to fake images
