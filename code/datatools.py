@@ -7,7 +7,7 @@ def getData(path='../data/alps_hgt/', resolution=128, scale=1, step=0.1, heightD
     windows = []
     for heightmodel in data:
         windows.extend(createWindows(heightmodel, resolution, scale, step))
-    filtered = list(filter(lambda model: isEnoughHilly(model, heightDif, midHeight), windows))
+    filtered = list(filter(lambda model: isEnoughHilly(model, heightDif, midHeight, resolution), windows))
     filtered = [x / 5000 for x in filtered]
     filtered = np.expand_dims(filtered, axis=3)
     return filtered
@@ -29,13 +29,13 @@ def createWindows(heightmodel, win_size, scale=1, step=0.1):
     windows.append(window)
   return windows
 
-def isEnoughHilly(heightmodel, minDifference = 0, midHeight = 0):
+def isEnoughHilly(heightmodel, minDifference = 0, midHeight = 0, resolution = 128):
   flattened = np.array(heightmodel).flatten()
   sorted = np.sort(flattened)
   length = len(sorted)
   dif = abs(sorted[0] - sorted[length - 1])
   median = sorted[int(length / 2)]
-  return dif > minDifference and median > midHeight and length == 16384
+  return dif > minDifference and median > midHeight and length == (resolution * resolution)
 
 def filterByResolution(heightmodels, resolution):
     filtered = filter(lambda x: len(x) == (resolution * resolution), heightmodels)
