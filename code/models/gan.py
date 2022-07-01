@@ -56,11 +56,11 @@ class GAN(keras.Model):
         )
         
     def compile(self, d_optimizer, g_optimizer, g_loss_fn, d_loss_fn):
-        super(GAN, self).compile()
+        super(GAN, self).compile(loss="mse")
         self.d_optimizer = d_optimizer
         self.g_optimizer = g_optimizer
-        self.d_loss_fn = d_loss_fn
-        self.g_loss_fn = g_loss_fn
+        #self.d_loss_fn = d_loss_fn
+        #self.g_loss_fn = g_loss_fn
         self.d_loss_metric = keras.metrics.Mean(name="d_loss")
         self.g_loss_metric = keras.metrics.Mean(name="g_loss")
     @property
