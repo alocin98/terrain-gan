@@ -125,7 +125,7 @@ class GAN(keras.Model):
         )
 
         self.fit(
-            data, epochs=epochs, callbacks=[self.reporter, keras.callbacks.EarlyStopping(monitor='g_loss', mode='min', min_delta=0.1, patience=100)]
+            data, epochs=epochs, callbacks=[self.reporter, keras.callbacks.EarlyStopping(monitor='g_loss', mode='min', min_delta=0.1, patience=100, baseline=10000000)]
         )
 
 
