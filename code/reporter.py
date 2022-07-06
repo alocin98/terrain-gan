@@ -54,9 +54,12 @@ class TensorBoardReporter(keras.callbacks.Callback):
       i = 0
       for x in range(rt):
         for y in range(rt):
-          axarr[x][y].imshow(numpy.squeeze(self.generated[i][0], axis=(2)))
-          axarr[x][y].set_title('Epoch: ' + str(i))
-          i = i + 1
+          try:
+            axarr[x][y].imshow(numpy.squeeze(self.generated[i][0], axis=(2)))
+            axarr[x][y].set_title('Epoch: ' + str(i))
+            i = i + 1
+          except IndexError:
+            break
       with self.file_writer.as_default():
         tf.summary.image("OVERVIEW", self.plot_to_image(plot), step=0)
       losses = plt.figure()
