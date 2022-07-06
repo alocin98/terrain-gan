@@ -111,6 +111,7 @@ class GAN(keras.Model):
         # Update metrics
         self.d_loss_metric.update_state(d_loss)
         self.g_loss_metric.update_state(g_loss)
+
         return {
             "d_loss": self.d_loss_metric.result(),
             "g_loss": self.g_loss_metric.result(),
@@ -124,7 +125,7 @@ class GAN(keras.Model):
         )
 
         self.fit(
-            data, epochs=epochs, callbacks=[self.reporter]
+            data, epochs=epochs, callbacks=[self.reporter, keras.callbacks.EarlyStopping(monitor='g_loss', mode='min', min_delta=100000000, patience=30 ), keras.callbacks.EarlyStopping(monitor='d_loss', mode='min', min_delta=100000000, patience=30 )]
         )
 
 
