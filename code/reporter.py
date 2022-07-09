@@ -8,7 +8,7 @@ import io
 
 
 class TensorBoardReporter(keras.callbacks.Callback):
-    def __init__(self, logdir='logs/tensorboard/', logname='', num_img=3, latent_dim=128, print_images=9):
+    def __init__(self, logdir='logs/tensorboard/', logname='', num_img=3, latent_dim=128, print_images=9, checkpoint_filepath):
         self.num_img = num_img
         self.latent_dim = latent_dim
         self.logname = logname
@@ -43,6 +43,8 @@ class TensorBoardReporter(keras.callbacks.Callback):
         tf.summary.scalar('g_loss', logs["g_loss"], step=epoch)
         tf.summary.scalar('d_loss', logs["d_loss"], step=epoch)
       #tf.summary.scalar('loss', log, step=epoch)
+      if checkpoint_filepath is not None:
+        self.model.generator.save(checkpoint_filepath)
     def on_train_end(self, logs=None):
 
       rt = int(math.sqrt(self.print_images))
