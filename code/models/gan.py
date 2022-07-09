@@ -116,7 +116,7 @@ class GAN(keras.Model):
             "d_loss": self.d_loss_metric.result(),
             "g_loss": self.g_loss_metric.result(),
         }
-    def train(self, data, optimizer, batch_size, epochs, loss_fn, logname, checkpoint_filepath):
+    def train(self, data, optimizer, batch_size, epochs, loss_fn, logname):
         self.reporter.setLogName(logname)
         self.compile(
             d_optimizer=optimizer,
