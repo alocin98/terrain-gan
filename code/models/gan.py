@@ -124,12 +124,8 @@ class GAN(keras.Model):
             loss_fn=loss_fn
         )
 
-        callbacks = [self.reporter, keras.callbacks.EarlyStopping(monitor='g_loss', mode='min', min_delta=0.1, patience=100, baseline=10000000)]
-        if checkpoint_filepath is not None:
-            model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_filepath)
-            callbacks.append(model_checkpoint_callback)
         self.fit(
-            data, epochs=epochs, callbacks=callbacks
+            data, epochs=epochs, callbacks=[self.reporter, keras.callbacks.EarlyStopping(monitor='g_loss', mode='min', min_delta=0.1, patience=100, baseline=10000000)]
         )
 
 
