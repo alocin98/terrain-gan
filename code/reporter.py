@@ -19,6 +19,7 @@ class TensorBoardReporter(keras.callbacks.Callback):
         self.logdir_root = logdir
         self.logdir = logdir + logname
         self.print_images = print_images
+        self.checkpoint_filepath = checkpoint_filepath
 
     def setLogName(self, name):
         self.logname = name
@@ -43,7 +44,7 @@ class TensorBoardReporter(keras.callbacks.Callback):
         tf.summary.scalar('g_loss', logs["g_loss"], step=epoch)
         tf.summary.scalar('d_loss', logs["d_loss"], step=epoch)
       #tf.summary.scalar('loss', log, step=epoch)
-      if len(checkpoint_filepath) > 0:
+      if len(self.checkpoint_filepath) > 0:
         self.model.generator.save(checkpoint_filepath)
     def on_train_end(self, logs=None):
 
