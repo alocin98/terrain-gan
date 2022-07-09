@@ -116,7 +116,7 @@ class GAN(keras.Model):
             "d_loss": self.d_loss_metric.result(),
             "g_loss": self.g_loss_metric.result(),
         }
-    def train(self, data, optimizer, batch_size, epochs, loss_fn, logname):
+    def train(self, data, optimizer, batch_size, epochs, loss_fn, logname, checkpoint_filepath):
         self.reporter.setLogName(logname)
         self.compile(
             d_optimizer=optimizer,
@@ -124,8 +124,12 @@ class GAN(keras.Model):
             loss_fn=loss_fn
         )
 
+        callbacks = [self.reporter, keras.callbacks.EarlyStopping(monitor='g_loss', mode='min', min_delta=0.1, patience=100, baseline=10000000)]
+        if checkpoint_filepath is not None:
+            model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_filepath)
+            callbacks.append(model_checkpoint_callback)
         self.fit(
-            data, epochs=epochs, callbacks=[self.reporter, keras.callbacks.EarlyStopping(monitor='g_loss', mode='min', min_delta=0.1, patience=100, baseline=10000000)]
+            data, epochs=epochs, callbacks=callbacks
         )
 
 
