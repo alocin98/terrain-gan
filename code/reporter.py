@@ -45,7 +45,7 @@ class TensorBoardReporter(keras.callbacks.Callback):
         tf.summary.scalar('d_loss', logs["d_loss"], step=epoch)
       #tf.summary.scalar('loss', log, step=epoch)
       if len(self.checkpoint_filepath) > 0:
-        self.model.generator.save(checkpoint_filepath)
+        self.model.generator.save(self.checkpoint_filepath + self.logname + '.h5')
     def on_train_end(self, logs=None):
 
       rt = int(math.sqrt(self.print_images))
