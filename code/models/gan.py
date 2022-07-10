@@ -101,7 +101,7 @@ class GAN(keras.Model):
 
         # Train the generator (note that we should *not* update the weights
         # of the discriminator)!
-        for i in range(0, disc_train_ratio):
+        for i in range(0, self.disc_train_ratio):
             with tf.GradientTape() as tape:
                 predictions = self.discriminator(self.generator(random_latent_vectors))
                 g_loss = self.loss_fn(misleading_labels, predictions)
