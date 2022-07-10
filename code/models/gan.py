@@ -85,14 +85,13 @@ class GAN(keras.Model):
         labels += 0.05 * tf.random.uniform(tf.shape(labels))
 
         # Train the discriminator
-        for i in range(0, self.disc_train_ratio):
-            with tf.GradientTape() as tape:
-                predictions = self.discriminator(combined_images)
-                d_loss = self.loss_fn(labels, predictions)
-            grads = tape.gradient(d_loss, self.discriminator.trainable_weights)
-            self.d_optimizer.apply_gradients(
-                zip(grads, self.discriminator.trainable_weights)
-            )
+        with tf.GradientTape() as tape:
+            predictions = self.discriminator(combined_images)
+            d_loss = self.loss_fn(labels, predictions)
+        grads = tape.gradient(d_loss, self.discriminator.trainable_weights)
+        self.d_optimizer.apply_gradients(
+            zip(grads, self.discriminator.trainable_weights)
+        )
 
         # Sample random points in the latent space
         random_latent_vectors = tf.random.normal(shape=(batch_size, self.latent_dim))
@@ -125,7 +124,7 @@ class GAN(keras.Model):
         )
 
         self.fit(
-            data, epochs=epochs, callbacks=[self.reporter, keras.callbacks.EarlyStopping(monitor='g_loss', mode='min', min_delta=0.001, patience=20)]
+            data, epochs=epochs, callbacks=[self.reporter]
         )
 
 
